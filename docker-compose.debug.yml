@@ -1,0 +1,59 @@
+version: '3.4'
+
+services:
+  client-portal-web:
+    image: klassroom/client-portal-web
+    build:
+      context: .
+      dockerfile: ./apps/client/portal/web/Dockerfile
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    networks:
+      - public
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.klassroomclientportalweb.rule=Host(`klassroom.docker.localhost`)
+  api-gateway:
+    image: klassroom/api-gateway
+    build:
+      context: .
+      dockerfile: ./apps/api/gateway/Dockerfile
+    depends_on:
+      - server-space
+    environment:
+      - NODE_ENV=development
+      - WAIT_HOSTS=server-space:3000
+    volumes:
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    networks:
+      - public
+      - private
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.klassroomapigateway.rule=Host(`klassroom.docker.localhost`) && PathPrefix(`api`)
+    command: sh -c "/wait && yarn nx serve api-gateway"
+  server-spaces:
+    image: klassroom/server-space
+    build:
+      context: .
+      dockerfile: ./apps/server/space/Dockerfile
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    networks:
+      - private
+
+volumes:
+  node_modules:
+
+networks:
+  public:
+    name: traefik_webgateway
+    external: true
+  private:
