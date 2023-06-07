@@ -7,11 +7,9 @@ export class SpaceEntity {
   id: string;
 
   @Prop({ required: true })
-  @Field({ description: 'Title of space' })
   title: string;
 
   @Prop()
-  @Field({ nullable: true })
   user: string;
 }
 

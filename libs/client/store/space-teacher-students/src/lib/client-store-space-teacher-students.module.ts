@@ -8,7 +8,7 @@ import * as fromStudent from './reducers/student.reducer';
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature(fromStudent.studentsFeatureKey, fromStudent.reducer),
+    StoreModule.forFeature(fromStudent.spaceTeacherStudentsFeatureKey, fromStudent.reducer),
     EffectsModule.forFeature([StudentEffects])
   ],
 })

@@ -1,14 +1,15 @@
 import { Route } from '@angular/router';
 import { IsLoggedGuard } from '@klassroom/client/common/auth';
+import { selectSpaceGuard } from '@klassroom/client/store/space';
 
 export const appRoutes: Route[] = [
-
   {
     path: '',
     canActivate: [IsLoggedGuard],
     children: [
       {
         path: 'space/:space/teacher',
+        canActivate: [selectSpaceGuard],
         children: [
           {
             path: '',
@@ -24,7 +25,7 @@ export const appRoutes: Route[] = [
                 (m) => m.ClientPagesSpaceTeacherStudentsModule
               ),
           },
-        ]
+        ],
       },
       {
         path: 'space/:space/student',

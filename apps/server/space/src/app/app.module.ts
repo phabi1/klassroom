@@ -1,4 +1,7 @@
-import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
+import {
+  ApolloFederationDriver,
+  ApolloFederationDriverConfig,
+} from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -13,24 +16,24 @@ import courseConfig from '../config/course.config';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true, load: [
-        databaseConfig,
-        courseConfig
-      ]
+      isGlobal: true,
+      load: [databaseConfig, courseConfig],
     }),
     MongooseModule.forRootAsync({
-      useFactory: (configService: ConfigService) => configService.get('database'),
-      inject: [ConfigService]
+      useFactory: (configService: ConfigService) =>
+        configService.get('database'),
+      inject: [ConfigService],
     }),
     GraphQLModule.forRoot<ApolloFederationDriverConfig>({
       driver: ApolloFederationDriver,
       introspection: true,
       autoSchemaFile: {
-        path: join(process.cwd(), 'graphql', 'space.gql')
+        path: join(process.cwd(), 'graphql', 'space.gql'),
       },
     }),
-    SpaceModule],
+    SpaceModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

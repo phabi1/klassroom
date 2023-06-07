@@ -1,19 +1,19 @@
-import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Space } from './space.type';
 
-@ObjectType()
-export class StudentSpace {
-    @Field(() => ID)
-    id: string;
+@ObjectType({
+  implements: () => [Space],
+})
+export class StudentSpace implements Space {
+  id: string;
 
-    @Field()
-    title: string;
+  title: string;
 
-    @Field()
-    course: string;
+  @Field()
+  course: string;
 
-    @Field()
-    user: string;
+  user: string;
 
-    @Field()
-    student: string;
+  @Field()
+  student: string;
 }

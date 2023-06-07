@@ -1,19 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GRAPHQL_OPTIONS } from '../constants/tokens';
+import { GraphqlOptions } from '../interfaces/graphql-options.interface';
 
 export function gql(stringPieces: TemplateStringsArray): string {
-  return stringPieces.join('')
+  return stringPieces.join('');
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class GraphqlService {
-
-  constructor(private readonly http: HttpClient) { }
+  constructor(
+    private readonly http: HttpClient,
+    @Inject(GRAPHQL_OPTIONS) private options: GraphqlOptions
+  ) {}
 
   fetch<T = any>(query: string, variables: object = {}): Observable<T> {
-    return this.http.post<T>('/graphql', { query, variables })
+    return this.http.post<T>(this.options.endpoint, { query, variables });
   }
 }

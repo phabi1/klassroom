@@ -34,6 +34,7 @@ const handleAuth = ({ req }) => {
         supergraphSdl: new IntrospectAndCompose({
           subgraphs: [
             { name: 'spaces', url: 'http://server-spaces:3000/graphql' },
+            { name: 'courses', url: 'http://server-courses:3000/graphql' },
           ],
         }),
       },

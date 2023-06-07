@@ -42,9 +42,10 @@ services:
       dockerfile: ./apps/api/gateway/Dockerfile
     depends_on:
       - server-spaces
+      - server-courses
     environment:
       - NODE_ENV=development
-      - WAIT_HOSTS=server-spaces:3000
+      - WAIT_HOSTS=server-spaces:3000,server-courses:3000
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules

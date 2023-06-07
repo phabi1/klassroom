@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Student } from '@klassroom/client/store/space-teacher-students';
 
 @Component({
   selector: 'klassroom-space-teacher-students-student-list',
@@ -7,5 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class StudentListComponent {
   @Input()
-  items: any[] = [];
+  items: Student[] = [];
 }

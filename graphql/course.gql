@@ -1,0 +1,94 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @key(fields: String!, resolvable: Boolean = true) repeatable on OBJECT | INTERFACE
+
+directive @extends on OBJECT | INTERFACE
+
+directive @external on OBJECT | FIELD_DEFINITION
+
+directive @requires(fields: String!) on FIELD_DEFINITION
+
+directive @provides(fields: String!) on FIELD_DEFINITION
+
+directive @shareable on FIELD_DEFINITION | OBJECT
+
+directive @link(url: String!, import: [link__Import]) on SCHEMA
+
+directive @tag(name: String!) repeatable on FIELD_DEFINITION | OBJECT | INTERFACE | UNION | ARGUMENT_DEFINITION | SCALAR | ENUM | ENUM_VALUE | INPUT_OBJECT | INPUT_FIELD_DEFINITION
+
+directive @inaccessible on FIELD_DEFINITION | OBJECT | INTERFACE | UNION | ARGUMENT_DEFINITION | SCALAR | ENUM | ENUM_VALUE | INPUT_OBJECT | INPUT_FIELD_DEFINITION
+
+directive @override(from: String!) on FIELD_DEFINITION
+
+type GradeEntity {
+  name: Float!
+  title: String!
+}
+
+type Grade {
+  id: ID!
+  name: Float!
+  title: String!
+}
+
+type Course {
+  id: ID!
+  title: String!
+  grades: [Grade!]!
+}
+
+type Student {
+  id: ID!
+  firstname: String!
+  lastname: String!
+  shortname: String
+  birthday: DateTime
+  sex: String!
+  grade: Grade!
+  cover: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  course(id: ID!): Course!
+  students(course: ID!): [Student!]!
+  student(id: ID!): Student!
+  grades: [Grade!]!
+  grade(id: ID!): Grade!
+}
+
+type Mutation {
+  createStudent(input: CreateStudentInput!): Student!
+  createGrade(input: CreateGradeInput!): Grade!
+  updateGrade(id: ID!, input: UpdateGradeInput!): Grade!
+  removeGrade(id: ID!): Grade!
+}
+
+input CreateStudentInput {
+  firstname: String!
+  lastname: String!
+  shortname: String
+  birthday: DateTime
+  cover: String
+  grade: ID!
+  course: ID!
+  user: String
+}
+
+input CreateGradeInput {
+  name: String!
+  title: String!
+}
+
+input UpdateGradeInput {
+  name: String
+  title: String
+}
+
+scalar link__Import
