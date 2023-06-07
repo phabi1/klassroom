@@ -14,7 +14,27 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@klassroom/client/common/auth": ["libs/client/common/auth/src/index.ts"],
+      "@klassroom/client/common/config/core": [
+        "libs/client/common/config/core/src/index.ts"
+      ],
+      "@klassroom/client/common/config/loader/http": [
+        "libs/client/common/config/loader/http/src/index.ts"
+      ],
+      "@klassroom/client/common/graphql": [
+        "libs/client/common/graphql/src/index.ts"
+      ],
+      "@klassroom/client/pages/space/dashboard": [
+        "libs/client/pages/space/dashboard/src/index.ts"
+      ],
+      "@klassroom/client/pages/space/teacher/students": [
+        "libs/client/pages/space/teacher/students/src/index.ts"
+      ],
+      "@klassroom/client/store/space-teacher-students": [
+        "libs/client/store/space-teacher-students/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,0 +1,10 @@
+{
+  "api": {
+    "endpoint": "/api"
+  },
+  "keycloak": {
+    "endpoint": "http://keycloak.docker.localhost",
+    "realm": "klassroom",
+    "clientId": "client-portal-web"
+  }
+}
