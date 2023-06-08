@@ -1,13 +1,19 @@
-import { Field, ID, InterfaceType } from '@nestjs/graphql';
+import { createUnionType } from '@nestjs/graphql';
+import { TeacherSpace } from './teacher-space';
+import { StudentSpace } from './student-space';
+import { ParentSpace } from './parent-space';
 
-@InterfaceType()
-export abstract class Space {
-  @Field(() => ID)
-  id: string;
-
-  @Field()
-  title: string;
-
-  @Field({ nullable: true })
-  user: string;
-}
+export const Space = createUnionType({
+  name: 'Space',
+  types: () => [TeacherSpace, StudentSpace, ParentSpace],
+  resolveType: (space) => {
+    switch (space.__t) {
+      case 'Teacher':
+        return TeacherSpace;
+      case 'Student':
+        return StudentSpace;
+      case 'Parent':
+        return ParentSpace;
+    }
+  },
+});

@@ -1,12 +1,16 @@
 import { Route } from '@angular/router';
 import { IsLoggedGuard } from '@klassroom/client/common/auth';
-import { selectSpaceGuard } from '@klassroom/client/store/space';
+import {
+  redirectToSpaceGuard,
+  selectSpaceGuard,
+} from '@klassroom/client/store/space';
 
 export const appRoutes: Route[] = [
   {
     path: '',
     canActivate: [IsLoggedGuard],
     children: [
+      { path: '', canActivate: [redirectToSpaceGuard] },
       {
         path: 'space/:space/teacher',
         canActivate: [selectSpaceGuard],
@@ -29,6 +33,7 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'space/:space/student',
+        canActivate: [selectSpaceGuard],
         loadChildren: () =>
           import('@klassroom/client/pages/space/dashboard').then(
             (m) => m.ClientPagesSpaceDashboardModule
@@ -36,9 +41,17 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'space/:space/parent',
+        canActivate: [selectSpaceGuard],
         loadChildren: () =>
           import('@klassroom/client/pages/space/dashboard').then(
             (m) => m.ClientPagesSpaceDashboardModule
+          ),
+      },
+      {
+        path: 'spaces',
+        loadChildren: () =>
+          import('@klassroom/client/pages/spaces').then(
+            (m) => m.ClientPagesSpacesModule
           ),
       },
     ],

@@ -31,6 +31,9 @@
       "@klassroom/client/pages/space/teacher/students": [
         "libs/client/pages/space/teacher/students/src/index.ts"
       ],
+      "@klassroom/client/pages/spaces": [
+        "libs/client/pages/spaces/src/index.ts"
+      ],
       "@klassroom/client/store/space": ["libs/client/store/space/src/index.ts"],
       "@klassroom/client/store/space-teacher-students": [
         "libs/client/store/space-teacher-students/src/index.ts"

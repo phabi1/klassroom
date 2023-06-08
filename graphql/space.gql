@@ -22,13 +22,7 @@ directive @inaccessible on FIELD_DEFINITION | OBJECT | INTERFACE | UNION | ARGUM
 
 directive @override(from: String!) on FIELD_DEFINITION
 
-interface Space {
-  id: ID!
-  title: String!
-  user: String
-}
-
-type ParentSpace implements Space {
+type ParentSpace implements ISpace {
   id: ID!
   title: String!
   user: String
@@ -37,7 +31,20 @@ type ParentSpace implements Space {
   parent: String!
 }
 
-type StudentSpace implements Space {
+interface ISpace {
+  id: ID!
+  title: String!
+  user: String
+}
+
+type TeacherSpace implements ISpace {
+  id: ID!
+  title: String!
+  user: String
+  course: String!
+}
+
+type StudentSpace implements ISpace {
   id: ID!
   title: String!
   user: String
@@ -45,17 +52,12 @@ type StudentSpace implements Space {
   student: String!
 }
 
-type TeacherSpace implements Space {
-  id: ID!
-  title: String!
-  user: String
-  course: String!
-}
-
 type Query {
   spaces: [Space!]!
   space(id: ID!): Space!
 }
+
+union Space = TeacherSpace | StudentSpace | ParentSpace
 
 type Mutation {
   createTeacherSpace(input: CreateTeacherSpaceInput!): TeacherSpace!

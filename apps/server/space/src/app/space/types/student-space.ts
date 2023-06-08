@@ -1,10 +1,10 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Space } from './space.type';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { ISpace } from './ispace.type';
 
 @ObjectType({
-  implements: () => [Space],
+  implements: () => [ISpace],
 })
-export class StudentSpace implements Space {
+export class StudentSpace implements ISpace {
   id: string;
 
   title: string;
