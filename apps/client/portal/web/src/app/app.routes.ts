@@ -4,13 +4,18 @@ import {
   redirectToSpaceGuard,
   selectSpaceGuard,
 } from '@klassroom/client/store/space';
+import { WaitingComponent } from './components/waiting/waiting.component';
 
 export const appRoutes: Route[] = [
   {
     path: '',
     canActivate: [IsLoggedGuard],
     children: [
-      { path: '', canActivate: [redirectToSpaceGuard] },
+      {
+        path: '',
+        canActivate: [redirectToSpaceGuard],
+        component: WaitingComponent
+      },
       {
         path: 'space/:space/teacher',
         canActivate: [selectSpaceGuard],

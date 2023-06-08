@@ -37,7 +37,11 @@
       "@klassroom/client/store/space": ["libs/client/store/space/src/index.ts"],
       "@klassroom/client/store/space-teacher-students": [
         "libs/client/store/space-teacher-students/src/index.ts"
-      ]
+      ],
+      "@klassroom/client/store/spaces": [
+        "libs/client/store/spaces/src/index.ts"
+      ],
+      "@klassroom/server/auth": ["libs/server/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

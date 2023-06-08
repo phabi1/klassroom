@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType, Parent, ResolveField } from '@nestjs/graphql';
 import { ISpace } from './ispace.type';
 
 @ObjectType({
@@ -7,6 +7,7 @@ import { ISpace } from './ispace.type';
 export class ParentSpace implements ISpace {
   id: string;
   title: string;
+  type: string;
 
   @Field()
   course: string;

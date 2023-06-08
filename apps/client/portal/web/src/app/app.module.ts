@@ -16,9 +16,10 @@ import { appRoutes } from './app.routes';
 import { configFactory } from './factories/config.factory';
 import { GraphqlModule } from '@klassroom/client/common/graphql';
 import { SpaceStoreModule } from '@klassroom/client/store/space';
+import { WaitingComponent } from './components/waiting/waiting.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, WaitingComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

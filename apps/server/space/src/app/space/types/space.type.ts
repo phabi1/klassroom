@@ -7,7 +7,7 @@ export const Space = createUnionType({
   name: 'Space',
   types: () => [TeacherSpace, StudentSpace, ParentSpace],
   resolveType: (space) => {
-    switch (space.__t) {
+    switch (space.type) {
       case 'Teacher':
         return TeacherSpace;
       case 'Student':

@@ -7,7 +7,7 @@ export const redirectToSpaceGuard: CanActivateFn = () => {
   const data = localStorage.getItem('current_space');
   const space = data ? JSON.parse(data) : null;
   if (space) {
-    return router.createUrlTree(['space', space.id, space.type]);
+    return router.createUrlTree(['space', space.id, space.type.toLowerCase()]);
   }
   return router.createUrlTree(['/spaces']);
 };

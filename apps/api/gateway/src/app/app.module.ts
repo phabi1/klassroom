@@ -5,39 +5,54 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HealthModule } from './health/health.module';
-
-const handleAuth = ({ req }) => {
-  return {
-    userId: '1',
-    authorization: req.headers.Authorization
-  }
-}
+import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloGatewayDriverConfig>({
+    GraphQLModule.forRootAsync<ApolloGatewayDriverConfig>({
+      imports: [
+        JwtModule.register({})
+      ],
       driver: ApolloGatewayDriver,
-      server: {
-        path: '/api/graphql',
-        context: handleAuth
-      },
-      gateway: {
-        buildService: ({ url }) => {
-          return new RemoteGraphQLDataSource({
-            url,
-            willSendRequest({ request, context }: any) {
-              request.http.headers.set('X-User-Id', context.userId);
-              request.http.headers.set('Authorization', context.authorization);
+      useFactory: (jwtService: JwtService) => {
+
+        const handleAuth = ({ req }) => {
+
+          const token = req.headers.authorization.replace('Bearer ', '');
+          const payload = jwtService.decode(token);
+
+          return {
+            userId: payload.sub,
+            authorization: req.headers.authorization
+          }
+        }
+
+        return {
+          server: {
+            path: '/api/graphql',
+            context: handleAuth
+          },
+          gateway: {
+            buildService: ({ url }) => {
+              return new RemoteGraphQLDataSource({
+                url,
+                willSendRequest({ request, context }: any) {
+                  request.http.headers.set('X-User-Id', context.userId);
+                  request.http.headers.set('Authorization', context.authorization);
+                },
+              });
             },
-          });
-        },
-        supergraphSdl: new IntrospectAndCompose({
-          subgraphs: [
-            { name: 'spaces', url: 'http://server-spaces:3000/graphql' },
-            { name: 'courses', url: 'http://server-courses:3000/graphql' },
-          ],
-        }),
+            supergraphSdl: new IntrospectAndCompose({
+              subgraphs: [
+                { name: 'spaces', url: 'http://server-spaces:3000/graphql' },
+                { name: 'courses', url: 'http://server-courses:3000/graphql' },
+              ],
+            }),
+          },
+
+        }
       },
+      inject: [JwtService]
     }),
     HealthModule,
   ],

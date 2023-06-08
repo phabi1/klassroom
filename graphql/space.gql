@@ -24,6 +24,7 @@ directive @override(from: String!) on FIELD_DEFINITION
 
 type ParentSpace implements ISpace {
   id: ID!
+  type: String!
   title: String!
   user: String
   course: String!
@@ -33,12 +34,14 @@ type ParentSpace implements ISpace {
 
 interface ISpace {
   id: ID!
+  type: String!
   title: String!
   user: String
 }
 
 type TeacherSpace implements ISpace {
   id: ID!
+  type: String!
   title: String!
   user: String
   course: String!
@@ -46,6 +49,7 @@ type TeacherSpace implements ISpace {
 
 type StudentSpace implements ISpace {
   id: ID!
+  type: String!
   title: String!
   user: String
   course: String!

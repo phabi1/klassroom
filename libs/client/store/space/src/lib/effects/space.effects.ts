@@ -9,9 +9,12 @@ import { SpaceActions } from '../actions/space.actions';
 export const GET_SPACE_GQL = gql`
   query ($id: ID!) {
     space(id: $id) {
-      ... on TeacherSpace {
+      ... on ISpace {
         id
+        type
         title
+      }
+      ... on TeacherSpace {
         course
       }
     }
@@ -43,7 +46,7 @@ export class SpaceEffects {
         tap((action) => {
           localStorage.setItem(
             'current_space',
-            JSON.stringify({ id: action.space.id, type: action.space.type })
+            JSON.stringify(action.space)
           );
         })
       );
@@ -54,5 +57,5 @@ export class SpaceEffects {
   constructor(
     private actions$: Actions,
     private graphqlService: GraphqlService
-  ) {}
+  ) { }
 }

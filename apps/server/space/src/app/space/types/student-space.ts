@@ -8,6 +8,8 @@ export class StudentSpace implements ISpace {
   id: string;
 
   title: string;
+  
+  type: string;
 
   @Field()
   course: string;

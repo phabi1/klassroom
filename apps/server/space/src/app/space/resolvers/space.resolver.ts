@@ -1,3 +1,4 @@
+import { CurrentUser } from '@klassroom/server/auth';
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateParentSpaceInput } from '../dto/create-parent-space.input';
 import { CreateStudentSpaceInput } from '../dto/create-student-space.input';
@@ -14,22 +15,22 @@ export class SpaceResolver {
   constructor(private readonly spaceService: SpaceService) { }
 
   @Mutation(() => TeacherSpace)
-  createTeacherSpace(@Args('input') input: CreateTeacherSpaceInput) {
+  createTeacherSpace(@Args('input') input: CreateTeacherSpaceInput, @CurrentUser() user: string) {
     return this.spaceService.createTeacher(input);
   }
 
   @Mutation(() => StudentSpace)
-  createStudentSpace(@Args('input') input: CreateStudentSpaceInput) {
+  createStudentSpace(@Args('input') input: CreateStudentSpaceInput, @CurrentUser() user: string) {
     return this.spaceService.createStudent(input);
   }
 
   @Mutation(() => ParentSpace)
-  createParentSpace(@Args('input') input: CreateParentSpaceInput) {
+  createParentSpace(@Args('input') input: CreateParentSpaceInput, @CurrentUser() user: string) {
     return this.spaceService.createParent(input);
   }
 
   @Query(() => [Space], { name: 'spaces' })
-  findAll(user: string) {
+  findAll(@CurrentUser() user: string) {
     return this.spaceService.findByUser(user);
   }
 

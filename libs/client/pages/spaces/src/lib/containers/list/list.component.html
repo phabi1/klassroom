@@ -1,0 +1,10 @@
+<h1 class="text-2xl">Spaces</h1>
+<div>
+  <ul>
+    <li *ngFor="let item of (items$ | async) || []">
+      <a [routerLink]="['/space/', item.id, item.type.toLowerCase()]">{{
+        item.title
+      }}</a>
+    </li>
+  </ul>
+</div>
