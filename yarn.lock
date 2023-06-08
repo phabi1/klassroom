@@ -3454,6 +3454,20 @@
   resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-16.0.4.tgz"
   integrity sha512-9slmfDGE9l8S4PQlRoCjkVyzKzWVONgceb7Af85vZLcMhY6pa7f0/ddD586XpJBFXsP0xypEi9Tc8+Ld6Tdw5Q==
 
+"@ngx-formly/core@^6.1.7":
+  version "6.1.7"
+  resolved "https://registry.yarnpkg.com/@ngx-formly/core/-/core-6.1.7.tgz#5ac573629485cb1b440ae721601ce3f1150226b8"
+  integrity sha512-hFale+MISRuRznbi4Q7HQaXDICl6wtMneJcnQGmYv8yjeaOYjBsogpD4cOeDf3GibrHYk7Ggh4mamGaLdCL65A==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngx-formly/material@^6.1.7":
+  version "6.1.7"
+  resolved "https://registry.yarnpkg.com/@ngx-formly/material/-/material-6.1.7.tgz#218c3591437fbbe68945c3789f44eb0ebb55b0df"
+  integrity sha512-+Xd6O+nXsyZ/yEG2pKWPInaZj7pI4w4HLhtW3TgN/MWd3enYOWY5F0vBksnTbh9ixo4Z8SJItJ+QNAnfrAbpQw==
+  dependencies:
+    tslib "^2.0.0"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"

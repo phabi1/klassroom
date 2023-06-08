@@ -17,6 +17,9 @@ export class CreateStudentInput {
   @Field({ nullable: true })
   cover: string;
 
+  @Field({ nullable: true })
+  sex: string;
+
   @Field(() => ID)
   grade: string;
 

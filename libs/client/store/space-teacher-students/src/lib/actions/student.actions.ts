@@ -1,6 +1,6 @@
-import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
+import { CreateStudentInput } from '../models/create-student-input.model';
 import { Student } from '../models/student.model';
 
 export const StudentActions = createActionGroup({
@@ -9,14 +9,14 @@ export const StudentActions = createActionGroup({
     'Load Students': emptyProps(),
     'Load Students Success': props<{ students: Student[] }>(),
     'Load Students Failure': props<{ error: string }>(),
-    'Add Student': props<{ student: Student }>(),
-    'Upsert Student': props<{ student: Student }>(),
-    'Add Students': props<{ student: Student[] }>(),
-    'Upsert Students': props<{ student: Student[] }>(),
+    'Load Student Details': props<{ id: string }>(),
+    'Load Student Details Success': props<{ student: Student }>(),
+    'Load Student Details Failure': props<{ error: string }>(),
+    'Add Student': props<{ data: CreateStudentInput }>(),
+    'Add Student Success': props<{ student: Student }>(),
+    'Add Student Failure': props<{ error: string }>(),
     'Update Student': props<{ student: Update<Student> }>(),
-    'Update Students': props<{ students: Update<Student>[] }>(),
     'Delete Student': props<{ id: string }>(),
-    'Delete Students': props<{ ids: string[] }>(),
     'Clear Students': emptyProps(),
   }
 });

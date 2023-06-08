@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   Student,
   StudentsSelectors,
 } from '@klassroom/client/store/space-teacher-students';
 import { Store, select } from '@ngrx/store';
-import { Observable, startWith } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'klassroom-space-teacher-students-list',
@@ -16,7 +16,7 @@ export class ListComponent {
 
   constructor(private readonly store: Store) {
     this.students$ = this.store.pipe(
-      select(StudentsSelectors.selectAll)
+      select(StudentsSelectors.selectFilteredStudents)
     );
   }
 }

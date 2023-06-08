@@ -38,6 +38,8 @@
     "@ngrx/router-store": "~16.0.0",
     "@ngrx/store": "^16.0.1",
     "@ngrx/store-devtools": "^16.0.1",
+    "@ngx-formly/core": "^6.1.7",
+    "@ngx-formly/material": "^6.1.7",
     "amqp-connection-manager": "^4.1.13",
     "amqplib": "^0.10.3",
     "axios": "^1.0.0",

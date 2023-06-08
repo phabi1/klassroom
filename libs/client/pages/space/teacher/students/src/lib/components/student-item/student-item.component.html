@@ -1,9 +1,13 @@
 <a [routerLink]="[id]" class="p-2">
-  <div class="mr-2">
-    <klassroom-space-teacher-students-student-avatar [sex]="sex"></klassroom-space-teacher-students-student-avatar>
-  </div>
-  <div>
-    <div>{{ fullname }}</div>
-    <div>grade</div>
+  <div class="flex items-center">
+    <div class="mr-2">
+      <klassroom-space-teacher-students-student-avatar
+        [sex]="sex"
+      ></klassroom-space-teacher-students-student-avatar>
+    </div>
+    <div>
+      <div class="text-base">{{ fullname }}</div>
+      <div class="text-xs">{{ grade }}</div>
+    </div>
   </div>
 </a>

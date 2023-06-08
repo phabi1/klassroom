@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Grade } from '../../grade/types/grade.type';
+import { Parent } from './parent.type';
 
 @ObjectType()
 export class Student {
@@ -26,4 +27,7 @@ export class Student {
 
   @Field({ nullable: true })
   cover: string;
+
+  @Field(() => [Parent], { nullable: 'items' })
+  parents: Parent[];
 }

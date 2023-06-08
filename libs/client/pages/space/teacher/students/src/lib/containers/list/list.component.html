@@ -1,3 +1,10 @@
-<klassroom-space-teacher-students-student-list
-  [items]="(students$ | async)!"
-></klassroom-space-teacher-students-student-list>
+<div class="relative h-full">
+  <klassroom-space-teacher-students-search-input></klassroom-space-teacher-students-search-input>
+  <mat-divider></mat-divider>
+  <klassroom-space-teacher-students-student-list
+    [items]="(students$ | async)!"
+  ></klassroom-space-teacher-students-student-list>
+  <div class="absolute bottom-2 left-[50%] -ml-[28px]">
+    <a mat-fab [routerLink]="['/add']"><mat-icon>add</mat-icon></a>
+  </div>
+</div>

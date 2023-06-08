@@ -1,5 +1,5 @@
+import { Space } from '@klassroom/client/store/spaces';
 import { createActionGroup, props } from '@ngrx/store';
-import { Space } from '../interfaces/space.interface';
 
 export const SpaceActions = createActionGroup({
   source: 'Space',

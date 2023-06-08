@@ -22,11 +22,6 @@ directive @inaccessible on FIELD_DEFINITION | OBJECT | INTERFACE | UNION | ARGUM
 
 directive @override(from: String!) on FIELD_DEFINITION
 
-type GradeEntity {
-  name: Float!
-  title: String!
-}
-
 type Grade {
   id: ID!
   name: Float!
@@ -39,6 +34,13 @@ type Course {
   grades: [Grade!]!
 }
 
+type Parent {
+  id: ID!
+  firstname: String!
+  lastname: String!
+  role: String!
+}
+
 type Student {
   id: ID!
   firstname: String!
@@ -48,6 +50,7 @@ type Student {
   sex: String!
   grade: Grade!
   cover: String
+  parents: [Parent]!
 }
 
 """
@@ -76,6 +79,7 @@ input CreateStudentInput {
   shortname: String
   birthday: DateTime
   cover: String
+  sex: String
   grade: ID!
   course: ID!
   user: String

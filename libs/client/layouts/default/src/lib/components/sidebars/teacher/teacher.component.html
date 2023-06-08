@@ -1,0 +1,20 @@
+<div *ngIf="currentSpace$ | async as currentSpace">
+  <div>
+    <a routerLink="/spaces">{{ currentSpace.title }}</a>
+  </div>
+  <ul>
+    <li>
+      <a [routerLink]="['/space', currentSpace.id, 'teacher']">Dashboard</a>
+    </li>
+    <li>
+      <a [routerLink]="['/space', currentSpace.id, 'teacher', 'students']"
+        >Students</a
+      >
+    </li>
+    <li>
+      <a [routerLink]="['/space', currentSpace.id, 'teacher', 'course']"
+        >Course</a
+      >
+    </li>
+  </ul>
+</div>

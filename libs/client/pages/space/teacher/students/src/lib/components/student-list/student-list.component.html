@@ -1,11 +1,14 @@
 <div *ngIf="items.length > 0; else emptyTpl">
-  <klassroom-space-teacher-students-student-item
-    *ngFor="let item of items"
-    [id]="item.id"
-    [firstname]="item.firstname"
-    [lastname]="item.lastname"
-    [sex]="item.sex"
-  ></klassroom-space-teacher-students-student-item>
+  <ng-container *ngFor="let item of items">
+    <klassroom-space-teacher-students-student-item
+      [id]="item.id"
+      [firstname]="item.firstname"
+      [lastname]="item.lastname"
+      [sex]="item.sex"
+      [grade]="item.grade.title"
+    ></klassroom-space-teacher-students-student-item>
+    <mat-divider></mat-divider>
+  </ng-container>
 </div>
 <ng-template #emptyTpl>
   <div class="flex h-full justify-center items-center p-4">No students</div>

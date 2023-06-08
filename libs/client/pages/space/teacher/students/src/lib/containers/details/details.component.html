@@ -1,4 +1,34 @@
-<klassroom-space-teacher-students-student-avatar
-  sex="boy"
-  size="lg"
-></klassroom-space-teacher-students-student-avatar>
+<div *ngIf="student$ | async as student" class="p-4">
+  <div class="bg-white mt-10 p-2 pt-10 rounded-md shadow relative text-center">
+    <klassroom-space-teacher-students-student-avatar
+      [sex]="student.sex"
+      size="lg"
+      class="absolute top-0 left-[50%] -mt-[36px] -ml-[36px]"
+    ></klassroom-space-teacher-students-student-avatar>
+    <div class="text-lg">
+      {{ student.firstname + ' ' + student.lastname }}
+      <span *ngIf="student.shortname">({{ student.shortname }})</span>
+    </div>
+    <div class="text-sm">{{ student.grade.title }}</div>
+  </div>
+  <div>
+    <h2 class="text-lg">Birthday</h2>
+    <div>
+      <div>{{ student.birthday }}</div>
+    </div>
+  </div>
+  <div>
+    <h2 class="text-lg">Parents</h2>
+    <div class="bg-white p-2 rounded-md shadow">
+      <table class="w-full">
+        <tbody>
+          <tr *ngFor="let parent of student.parents">
+            <td>{{ parent.firstname }}</td>
+            <td>{{ parent.lastname }}</td>
+            <td>{{ parent.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

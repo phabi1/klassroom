@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GraphqlService, gql } from '@klassroom/client/common/graphql';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { SpaceActions } from '../actions/space.actions';
 
 export const GET_MY_SPACES_GQL = gql`

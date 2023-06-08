@@ -9,6 +9,7 @@ import { ParentSpace } from '../types/parent-space';
 import { Space } from '../types/space.type';
 import { StudentSpace } from '../types/student-space';
 import { TeacherSpace } from '../types/teacher-space';
+import { ForbiddenException } from '@nestjs/common';
 
 @Resolver()
 export class SpaceResolver {
@@ -35,12 +36,20 @@ export class SpaceResolver {
   }
 
   @Query(() => Space, { name: 'space' })
-  findOne(@Args('id', { type: () => ID }) id: string) {
-    return this.spaceService.findOne(id);
+  async findOne(@Args('id', { type: () => ID }) id: string, @CurrentUser() user: string) {
+    const space = await this.spaceService.findOne(id);
+    if (space.user !== user) {
+      throw new ForbiddenException();
+    }
+    return space;
   }
 
   @Mutation(() => Space)
-  updateSpace(@Args('id', { type: () => ID }) id: string, @Args('input') input: UpdateSpaceInput) {
+  async updateSpace(@Args('id', { type: () => ID }) id: string, @Args('input') input: UpdateSpaceInput, @CurrentUser() user: string) {
+    const space = await this.spaceService.findOne(id);
+    if (space.user !== user) {
+      throw new ForbiddenException();
+    }
     return this.spaceService.update(id, input);
   }
 

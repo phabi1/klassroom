@@ -10,14 +10,14 @@ export class StudentService {
   constructor(
     @InjectModel('Student') private readonly model: Model<StudentDocument>,
     @InjectModel('Course') private readonly courseModel: Model<CourseDocument>
-  ) {}
+  ) { }
 
   async findByCourse(course: string) {
-    return this.model.find({ course });
+    return this.model.find({ course }).populate(['grade']);
   }
 
   async findById(id: string) {
-    return this.model.findById(id);
+    return this.model.findById(id).populate(['grade']);
   }
 
   async create(input: CreateStudentInput) {

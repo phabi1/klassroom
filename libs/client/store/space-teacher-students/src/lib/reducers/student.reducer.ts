@@ -8,6 +8,7 @@ export const spaceTeacherStudentsFeatureKey = 'spaceTeacherStudents';
 export interface State extends EntityState<Student> {
   loading: boolean;
   error: string | null;
+  details: Student | null;
 }
 
 export const adapter: EntityAdapter<Student> = createEntityAdapter<Student>();
@@ -15,6 +16,7 @@ export const adapter: EntityAdapter<Student> = createEntityAdapter<Student>();
 export const initialState: State = adapter.getInitialState({
   loading: false,
   error: null,
+  details: null,
 });
 
 export const reducer = createReducer(
@@ -33,5 +35,9 @@ export const reducer = createReducer(
     ...state,
     loading: false,
     erorr: action.error,
+  })),
+  on(StudentActions.loadStudentDetailsSuccess, (state, action) => ({ ...state, details: action.student })),
+  on(StudentActions.addStudentSuccess, (state, action) => ({
+    ...adapter.addOne(action.student, state)
   }))
 );

@@ -25,6 +25,9 @@
       "@klassroom/client/common/graphql": [
         "libs/client/common/graphql/src/index.ts"
       ],
+      "@klassroom/client/layouts/default": [
+        "libs/client/layouts/default/src/index.ts"
+      ],
       "@klassroom/client/pages/space/dashboard": [
         "libs/client/pages/space/dashboard/src/index.ts"
       ],

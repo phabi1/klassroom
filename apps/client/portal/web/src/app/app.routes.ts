@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { IsLoggedGuard } from '@klassroom/client/common/auth';
+import { LayoutComponent as DefaultLayoutComponent } from '@klassroom/client/layouts/default';
 import {
   redirectToSpaceGuard,
   selectSpaceGuard,
@@ -10,6 +11,7 @@ export const appRoutes: Route[] = [
   {
     path: '',
     canActivate: [IsLoggedGuard],
+    component: DefaultLayoutComponent,
     children: [
       {
         path: '',

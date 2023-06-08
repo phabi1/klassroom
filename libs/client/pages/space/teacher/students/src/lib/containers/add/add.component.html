@@ -1,1 +1,5 @@
-<p>add works!</p>
+<h1>Add student</h1>
+<formly-form [fields]="fields" [model]="model" [form]="form"></formly-form>
+<button mat-raised-button [disabled]="form.invalid" (click)="submit()">
+  Add
+</button>

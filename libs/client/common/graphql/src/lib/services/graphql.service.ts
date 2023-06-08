@@ -13,9 +13,9 @@ export class GraphqlService {
   constructor(
     private readonly http: HttpClient,
     @Inject(GRAPHQL_OPTIONS) private options: GraphqlOptions
-  ) {}
+  ) { }
 
-  fetch<T = any>(query: string, variables: object = {}): Observable<T> {
-    return this.http.post<T>(this.options.endpoint, { query, variables });
+  fetch<T = any>(query: string, variables: object = {}): Observable<{ data: T }> {
+    return this.http.post<{ data: T }>(this.options.endpoint, { query, variables });
   }
 }

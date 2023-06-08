@@ -18,6 +18,9 @@ export class StudentItemComponent {
   @Input()
   sex = 'unknow';
 
+  @Input()
+  grade!: string;
+
   get fullname() {
     return this.firstname + ' ' + this.lastname;
   }
